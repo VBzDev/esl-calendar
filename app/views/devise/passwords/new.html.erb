@@ -2,14 +2,14 @@
   <div class="row justify-content-center align-items-center vh-100">
     <div class="border border-2 rounded-4 p-5">
 
-      <div class="fs-1 text-white text-center mb-3">
+      <div class="fs-1 text-center mb-3">
         <i class="bi bi-calendar-week"></i>
         Reserve Room
       </div>
 
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
-        <h2 class="fs-2 text-center text-white mb-3">Recuperar Senha</h2>
+        <h2 class="fs-2 text-center mb-3">Recuperar Senha</h2>
 
         <div class="field mt-2">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
@@ -19,7 +19,7 @@
           <%= f.submit "Enviar instruções", class: "btn btn-primary" %>
         </div>
       <% end %>
-      
+
       <div class="actions mt-2 mb-2 d-grid gap-2 col-12 mb-4">
         <%= link_to "Voltar", :back, class: "btn btn-secondary" %>
       </div>

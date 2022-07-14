@@ -1,37 +1,44 @@
-<%= form_with(model: booking) do |form| %>
-  <% if booking.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+<%= form_with(model: booking, html:{class:"form"}) do |form| %>
+  <% if !booking.nil? %>
+    <% if booking.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
 
-      <ul>
-        <% booking.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+        <ul>
+          <% booking.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   <% end %>
+    
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="row">
+    <div class="mb-3">
+      <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="mb-3">
+      <%= form.text_area :subject, class: "form-control", placeholder: "Objetivo" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col mb-3">
+      <div class="text-sm-start">Início</div>
+      <%= form.datetime_field :start_time, class: "form-control" %>
+    </div>
+    <div class="col mb-3">
+      <div>Término</div>
+      <%= form.datetime_field :end_time, class: "form-control", placeholder: "Data de fim" %>
+    </div>
+  </div>
+  <div class="row">
+    
   </div>
 
-  <div>
-    <%= form.label :subject, style: "display: block" %>
-    <%= form.text_field :subject %>
-  </div>
-
-  <div>
-    <%= form.label :start_time, style: "display: block" %>
-    <%= form.datetime_field :start_time %>
-  </div>
-
-  <div>
-    <%= form.label :end_time, style: "display: block" %>
-    <%= form.datetime_field :end_time %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="rw justify-content-end">
+    <%= form.submit 'Salvar', class: "btn btn-primary"%>
   </div>
 <% end %>

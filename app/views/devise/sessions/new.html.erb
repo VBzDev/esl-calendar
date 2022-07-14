@@ -2,14 +2,14 @@
   <div class="row justify-content-center align-items-center vh-100">
     <div class="border border-2 rounded-4 p-5">
 
-      <div class="fs-1 text-white text-center mb-3">
+      <div class="fs-1 text-center mb-3">
         <i class="bi bi-calendar-week"></i>
         Reserve Room
       </div>
 
       <div class="form">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <h2 class="fs-2 text-center text-white mb-3">Entrar</h2>
+          <h2 class="fs-2 text-center mb-3">Entrar</h2>
 
           <div class="field mt-2">
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
@@ -20,7 +20,7 @@
           </div>
 
           <% if devise_mapping.rememberable? %>
-            <div class="field mt-2 text-white">
+            <div class="field mt-2">
               <%= f.check_box :remember_me, class: "form-check-input m-1" %>
               <%= f.label :remember_me, class: "fs-6" %>
             </div>

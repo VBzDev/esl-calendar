@@ -2,7 +2,7 @@
   <div class="row justify-content-center align-items-center vh-100">
     <div class="border border-2 rounded-4 p-5">
 
-      <div class="fs-1 text-white text-center mb-3">
+      <div class="fs-1 text-center mb-3">
         <i class="bi bi-calendar-week"></i>
         Reserve Room
       </div>
@@ -10,7 +10,7 @@
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
 
-        <h2 class="fs-2 text-center text-white mb-3">Editar Perfil</h2>
+        <h2 class="fs-2 text-center mb-3">Editar Perfil</h2>
 
         <div class="field mt-2">
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email" %>
@@ -43,7 +43,7 @@
 
       <hr class="border border-secondary border-2">
 
-      <div class="text-center text-white align-middle">
+      <div class="text-center align-middle">
         <h5>Cancelar minha conta</h5>
 
         <%= button_to registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger btn-sm" do %>
