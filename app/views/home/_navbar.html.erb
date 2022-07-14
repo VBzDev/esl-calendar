@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 align-items-center">
+        <li class="nav-item">
+          <%= link_to home_index_path, class: "navbar-brand fs-2 text-white ms-4" do %>
+            <i class="bi bi-calendar2-week"></i>
+            Reserve Room
+          <% end %>
+        </li>
+      </ul>
+      <div class="dropdown" >
+        <button class="btn btn-dark dropdown-toggle text-white" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= @user.email %>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end text-end" aria-labelledby="dropdownMenuButton1">
+          <li>
+            <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+              Editar Perfil
+              <i class="bi bi-person-lines-fill m-1"></i>
+            <% end %>
+          </li>
+
+          <li>
+            <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+              Sair
+              <i class="bi bi-box-arrow-right m-1"></i>
+            <% end %>
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
