@@ -1,12 +1,12 @@
-$(".show-booking").on("click", function(){
+$(".update-booking").on("click", function(){
   let booking = $(this).attr("id");
   console.log(booking)
-  // $.ajax({
-  //   url: "",
-  //   type: 'POST',
-  //   data: {},
-  //   success: {}
-  // });
+  $.ajax({
+    url: `/bookings/${booking}`,
+    type: 'PUT',
+    data: {},
+    success: (res) => console.log(res)
+  });
 });
 
 $(".delete-booking").on("click", function(){

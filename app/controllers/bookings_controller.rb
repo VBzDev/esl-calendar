@@ -4,11 +4,16 @@ class BookingsController < ApplicationController
 
   # GET /bookings or /bookings.json
   def index
+    @user = current_user
+
     @bookings = Booking.all
+
+    @booking = Booking.new
   end
 
   # GET /bookings/1 or /bookings/1.json
   def show
+    @booking = Booking.find(params[:id])
   end
 
   # GET /bookings/new
@@ -18,6 +23,7 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1/edit
   def edit
+    @booking = Booking.find(params[:id])
   end
 
   # POST /bookings or /bookings.json
@@ -38,15 +44,9 @@ class BookingsController < ApplicationController
 
   # PATCH/PUT /bookings/1 or /bookings/1.json
   def update
-    respond_to do |format|
-      if @booking.update(booking_params)
-        format.html { redirect_to booking_url(@booking), notice: "Booking was successfully updated." }
-        format.json { render :show, status: :ok, location: @booking }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
-      end
-    end
+    @booking.update(booking_params)
+    
+    render json: { booking: @booking }.to_json
   end
 
   # DELETE /bookings/1 or /bookings/1.json

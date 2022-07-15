@@ -1,19 +1,4 @@
 <%= form_with(model: booking, html:{class:"form"}) do |form| %>
-  <% if !booking.nil? %>
-    <% if booking.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
-
-        <ul>
-          <% booking.errors.each do |error| %>
-            <li><%= error.full_message %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  <% end %>
-    
-
   <div class="row">
     <div class="mb-3">
       <%= form.text_field :name, class: "form-control", placeholder: "Name" %>
@@ -34,11 +19,14 @@
       <%= form.datetime_field :end_time, class: "form-control", placeholder: "Data de fim" %>
     </div>
   </div>
+  
   <div class="row">
-    
-  </div>
-
-  <div class="rw justify-content-end">
-    <%= form.submit 'Salvar', class: "btn btn-primary"%>
+    <div class="col">
+      <% if button_update %>
+        <button id="<%= booking.id %>" class= "update-booking btn btn-primary">Atualizar</button>
+      <% else %>
+        <%= form.submit 'Salvar', class: "btn btn-primary"%>
+      <% end %>
+    </div>
   </div>
 <% end %>

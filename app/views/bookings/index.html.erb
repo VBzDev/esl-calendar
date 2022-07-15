@@ -1,14 +1,79 @@
-<p style="color: green"><%= notice %></p>
+<!-- NavBar -->
+<%= render partial: "shared/navbar" %>
 
-<h1>Bookings</h1>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col d-flex justify-content-end m-3">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newBookingModal">
+        Nova Reserva
+      </button>
+      <!-- Modal New Booking -->
+      <div class="modal fade" id="newBookingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header"> 
+              <h5 class="modal-title" id="exampleModalLabel">
+                Nova Reserva
+              </h5>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <%= render partial: "form", locals: { booking: @booking, button_update: false } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div id="bookings">
-  <% @bookings.each do |booking| %>
-    <%= render booking %>
-    <p>
-      <%= link_to "Show this booking", booking %>
-    </p>
-  <% end %>
+   <div class="row">
+    <div id="requests" class="col">
+      
+      <%= month_calendar(events: @bookings) do |date, bookings| %>
+        <%= date.day %>
+        <% bookings.each do |booking| %>
+          <div id="display-item-<%= booking.id %>" class="row fs-6 m-1">
+          
+            <div class="fw-bold">
+              <%= date_range(booking.start_time, booking.end_time) %>
+            </div>
+            <div class="fw-light col-3">
+              <%= booking.name %>
+            </div>
+
+            <div class="col-3">
+              <button id="<%= booking.id %>" class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#editBookingModal">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+
+              <!-- Modal Edit Booking -->
+              <div class="modal fade" id="editBookingModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+                    <div class="modal-header"> 
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Editar Reserva
+                      </h5>
+                      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <%= render partial: "form", locals: { booking: booking, button_update: true } %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="col-3">
+              <button id="<%= booking.id %>" class="delete-booking btn btn-sm btn-dark">
+                <i class="bi bi-trash3"></i>
+              </button>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
 </div>
-
-<%= link_to "New booking", new_booking_path %>
