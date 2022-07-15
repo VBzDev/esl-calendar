@@ -55,6 +55,8 @@ gem 'devise'
 
 gem 'byebug', '~> 9.0', '>= 9.0.6'
 
+gem 'simple_calendar', '~> 2.4', '>= 2.4.3'
+
 gem 'rails-i18n'
 
 group :development, :test do

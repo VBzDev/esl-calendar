@@ -1,0 +1,42 @@
+<div class="simple-calendar w-100">
+  <div class="calendar-heading text-center text-middle">
+    <%= link_to calendar.url_for_previous_view, class: "btn" do %>
+      <i class="bi bi-arrow-left-square text-white"></i>
+    <% end %>
+    
+    <span class="calendar-title fs-2 m-3 align-middle">
+      <%= t('date.month_names')[start_date.month] %> <%= start_date.year %>
+    </span>
+
+    <%= link_to calendar.url_for_next_view, class: "btn" do %>
+      <i class="bi bi-arrow-right-square text-white"></i>
+    <% end %>
+    
+  </div>
+
+  <table class="table table-dark table-borderless">
+    <thead>
+      <tr>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+        <tr>
+          <% week.each do |day| %>
+            <%= content_tag :td, class: calendar.td_classes_for(day) do %>
+              <% if defined?(Haml) && respond_to?(:block_is_haml?) && block_is_haml?(passed_block) %>
+                <% capture_haml(day, sorted_events.fetch(day, []), &passed_block) %>
+              <% else %>
+                <% passed_block.call day, sorted_events.fetch(day, []) %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
