@@ -17,7 +17,7 @@
       <%= month_calendar(events: @bookings) do |date, bookings| %>
         <%= date.day %>
         <% bookings.each do |booking| %>
-          <div class="row fs-6 m-1">
+          <div id="display-item-<%= booking.id %>" class="row fs-6 m-1">
           
             <div class="fw-bold">
               <%= date_range(booking.start_time, booking.end_time) %>

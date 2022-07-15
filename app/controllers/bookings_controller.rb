@@ -1,5 +1,6 @@
-class BookingsController < ApplicationController
+class BookingsController < ApplicationController  
   before_action :set_booking, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token, only: %i[update destroy]
 
   # GET /bookings or /bookings.json
   def index
@@ -52,10 +53,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
 
-    respond_to do |format|
-      format.html { redirect_to bookings_url, notice: "Booking was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    render plain: "OK"
   end
 
   private
