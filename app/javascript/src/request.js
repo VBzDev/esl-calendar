@@ -1,11 +1,22 @@
+
+
 $(".update-booking").on("click", function(){
-  let booking = $(this).attr("id");
-  console.log(booking)
+
+  var booking = $(this).attr("id");
+
   $.ajax({
     url: `/bookings/${booking}`,
     type: 'PUT',
-    data: {},
-    success: (res) => console.log(res)
+    data: {
+      booking: {
+        name: name,
+        subject: subject,
+        start_time: start_time,
+        end_time: end_time
+      }
+    },
+    success: () => {
+    }
   });
 });
 
@@ -21,3 +32,4 @@ $(".delete-booking").on("click", function(){
     });
   }
 });
+

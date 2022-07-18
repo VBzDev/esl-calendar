@@ -23,7 +23,7 @@
   <div class="row">
     <div class="col">
       <% if button_update %>
-        <button id="<%= booking.id %>" class= "update-booking btn btn-primary">Atualizar</button>
+        <button id="<%= booking.id %>" class= "update-booking btn btn-primary" data-bs-toggle="modal" data-bs-target="#editBookingModal">Atualizar</button>
       <% else %>
         <%= form.submit 'Salvar', class: "btn btn-primary"%>
       <% end %>
